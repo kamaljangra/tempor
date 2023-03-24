@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://localhost:81/css/all.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://localhost/quicker/css/quicker.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/form.css">
+</head>
+
+<body>
+    <header class="rflex jcsb aic">
+        <h3>Temper</h3>
+        <a href="./signup.html">Register</a>
+    </header>
+    <main class="rflex jcc aic">
+        <form action="./php/signin.php" method="post" class="cflex">
+            <h3 class="heading">Login</h3>
+            <h5 class="sub_heading">Welcome Back, user</h5>
+            <div class="field">
+                <input type="text" placeholder=" " name="username" id="username">
+                <label for="username">Username</label>
+            </div>
+            <div class="field">
+                <input type="password" placeholder=" " name="password" id="password">
+                <label for="password">Password</label>
+            </div>
+            <button id="login_btn">Login</button>
+        </form>
+    </main>
+    <footer class="cflex aic">
+        <h3><i class="fas fa-shield-alt"></i> Secured</h3>
+        <h6>Powered by temper</h6>
+    </footer>
+    <script src="http://localhost/quicker/quicker.js"></script>
+    <script src="./js/sign.js"></script>
+    <script>
+        $("#login_btn").ajaxSubmit({
+            before,
+            data: {
+                device: localStorage.getItem("device") || ''
+            },
+            success: function (res) {
+                res = JSON.parse(res);
+                if (res['success']) {
+                    if (res['verified'] == "1") {
+                        saveDet(res);
+                        window.location.href = "./dashboard";
+                    } else {
+                        sessionStorage.setItem("u", res['user']);
+                        window.location.href = "./verify.html";
+                    }
+                } else {
+                    alert(res['msg']);
+                    if (res.code == "T311")
+                        $("#username_field").addClass("error");
+                    if (res.code == "T321")
+                        $("#password_field").addClass("error");
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

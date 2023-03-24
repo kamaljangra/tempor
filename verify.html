@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://localhost:81/css/all.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://localhost/quicker/css/quicker.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/form.css">
+    <style>
+        form .otp input {
+            padding: 6px 0;
+        }
+
+        form .otp input.error {
+            transition: all 0.3s;
+            border-color: var(--error);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="rflex jcsb aic">
+        <h3>Temper</h3>
+        <a href="./">Login</a>
+    </header>
+    <main class="rflex jcc aic">
+        <form action="./php/verify.php" method="post" class="cflex">
+            <h3 class="heading">Otp verification</h3>
+            <h5 class="sub_heading">One last step</h5>
+            <div class="field rflex otp" id="otpField"></div>
+            <button type="submit" id="verify_btn">Verify</button>
+        </form>
+    </main>
+    <footer class="cflex aic">
+        <h3><i class="fas fa-shield-alt"></i> Secured</h3>
+        <h6>Powered by temper</h6>
+    </footer>
+    <script src="http://localhost/quicker/quicker.js"></script>
+    <script src="./js/otpField.js"></script>
+    <script src="./js/sign.js"></script>
+    <script>
+        otpHandler = new otpField($("#otpField"), 6)
+        $("#verify_btn").ajaxSubmit({
+            data: {
+                user: sessionStorage.getItem("u"),
+                device: localStorage.getItem("device")||''
+            },
+            before: function (x) {
+                if ($("#otp").value.length < 6) {
+                    otpHandler.createError();
+                    x.target.abort();
+                }
+            },
+            success: function (res) {
+                res = JSON.parse(res);
+                if (res['success']) {
+                    window.location.href = "./dashboard";
+                    saveDet(res);
+                } else {
+                    alert(res['msg']);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

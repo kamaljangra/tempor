@@ -1,0 +1,23 @@
+.detail_block {
+    padding: 30px;
+}
+.detail_title {
+    margin-bottom: 15px;
+}
+.detail_block input{
+    padding: 7px 20px;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    min-width: 180px;
+    flex-grow: 1;
+    width: 0;
+    margin: 10px;
+    border-bottom: 2px solid #00000044;
+}
+button.update{
+    padding: 7px 20px;
+    background: var(--primary);
+    border: none;
+    border-radius: 4px;
+}

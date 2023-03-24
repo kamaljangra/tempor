@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://localhost:81/css/all.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://localhost/quicker/css/quicker.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/form.css">
+</head>
+
+<body>
+    <header class="rflex jcsb aic">
+        <h3>Temper</h3>
+        <a href="./">Login</a>
+    </header>
+    <main class="rflex jcc aic">
+        <form action="./php/signup.php" method="post" class="cflex">
+            <h3 class="heading">Register</h3>
+            <h5 class="sub_heading">Welcome Back, user</h5>
+            <div class="field" id="username_field">
+                <input type="text" name="username" placeholder=" " id="username">
+                <label for="username">Username</label>
+                <i class="fa-solid fa-circle-exclamation"></i>
+            </div>
+            <div class="field" id="contact_field">
+                <input type="text" name="contact" placeholder=" " id="contact">
+                <label for="contact">Contact</label>
+                <i class="fa-solid fa-circle-exclamation"></i>
+            </div>
+            <div class="field" id="email_field">
+                <input type="email" name="email" placeholder=" " id="email">
+                <label for="email">E-mail</label>
+                <i class="fa-solid fa-circle-exclamation"></i>
+            </div>
+            <div class="field" id="password_field">
+                <input type="password" name="password" placeholder=" " id="password">
+                <label for="password">Password</label>
+                <i class="fa-solid fa-circle-exclamation"></i>
+            </div>
+            <button type="submit" id="sign_up_btn">Proceed</button>
+        </form>
+    </main>
+    <footer class="cflex aic">
+        <h3><i class="fas fa-shield-alt"></i> Secured</h3>
+        <h6>Powered by temper</h6>
+    </footer>
+    <script src="http://localhost/quicker/quicker.js"></script>
+    <script src="./js/sign.js"></script>
+    <script>
+        $("#sign_up_btn").ajaxSubmit({
+            before,
+            data: {
+                device: localStorage.getItem("device") || ''
+            },
+            success: function (res) {
+                console.log(res);
+                res = JSON.parse(res);
+                if (res['success']) {
+                    sessionStorage.setItem("u", res['user']);
+                    window.location.href = "./verify.html";
+                } else {
+                    alert(res['msg']);
+                    if (res.code == "T310")
+                        $("#username_field").addClass("error");
+                    if (res.code == "T330")
+                        $("#contact_field").addClass("error");
+                    if (res.code == "T340")
+                        $("#email_field").addClass("error");
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

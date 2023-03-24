@@ -1,0 +1,3 @@
+RewriteEngine On
+
+RewriteRule ^getimg /php/getimg.php

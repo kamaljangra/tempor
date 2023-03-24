@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://localhost:81/css/all.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://localhost/quicker/css/quicker.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <style>
+        .block_title span#year {
+            font-size: 0.58em;
+            margin-left: 5px;
+        }
+
+        .head i {
+            --s: 30px;
+        }
+
+        .days h6,
+        .dates h6 {
+            text-align: center;
+            width: calc(100%/7 - 2px);
+            padding: 10px 0;
+            margin: 1px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 7px;
+            transition: all 0.3s;
+        }
+
+        .dates h6.extra {
+            color: #00000033;
+        }
+
+        .dates h6:where(.active, :hover) {
+            background: #0d6efd22;
+            color: var(--primary_dark);
+        }
+    </style>
+</head>
+
+<body>
+    <main class="cflex">
+        <div id="profile_banner"></div>
+        <div class="container rflex">
+            <div class="left_panel">
+                <div class="block">
+                    <div class="head rflex jcsb aic">
+                        <h4 class="block_title">
+                            <span id="month">January</span>
+                            <span id="year">2023</span>
+                        </h4>
+                        <div class="rflex aic" style="margin-top:8px;">
+                            <i id="PM" class="icon fa-regular fa-angle-left"></i>
+                            <i id="NM" class="icon fa-regular fa-angle-right"></i>
+                        </div>
+                    </div>
+                    <div class="days rflex">
+                        <h6>SUN</h6>
+                        <h6>MON</h6>
+                        <h6>TUS</h6>
+                        <h6>WED</h6>
+                        <h6>THU</h6>
+                        <h6>FRI</h6>
+                        <h6>SAT</h6>
+                    </div>
+                    <div class="dates rflexw" id="dates"> </div>
+                </div>
+                <div class="block">
+                    <h4 class="block_title">Services</h4>
+                    <nav id="service_block" class="rflexw"></nav>
+                    <button>View all</button>
+                </div>
+            </div>
+            <div class="right_panel">
+                <div id="memory" class="block"></div>
+                <div class="block">
+                    <h4 class="block_title">Diary</h4>
+                    <h6 class="block_sub_title">26-03-2023</h6>
+                    <div id="diary">
+                        <form class="cflex">
+                            <input type="text" name="" placeholder="Title ..." class="diary_title">
+                            <textarea name="" id="" rows="4" placeholder="Write here..."></textarea>
+                            <input type="file" name="" id="file_input" multiple style="display: none;">
+                            <div class="rflexw" id="doc_list">
+                                <i class="icon">
+                                    <img src="../images/profile.jpg" alt="">
+                                    <i class="fa-regular fa-circle-xmark"></i>
+                                </i>
+                                <label class="file" for="file_input">
+                                    <i class="icon fa-regular fa-plus"></i>
+                                </label>
+                            </div>
+                            <button>Save Memory</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="http://localhost/quicker/quicker.js"></script>
+    <script src="../js/date_picker.js"></script>
+    <script>
+        $("#profile_banner").quickFill("./assets/php/profile_banner.php");
+        $("#service_block").quickFill("./assets/php/service_block.php");
+
+        // Create Memory
+        let temp_files = [];
+        $("#file_input").onchange = function () {
+            for (let j = 0; j < this.files.length; j++) {
+                let neww = true;
+                const nFile = this.files[j];
+                for (let i = 0; i < temp_files.length; i++) {
+                    let file = temp_files[i];
+                    if (nFile['name'] == file['name']) {
+                        neww = false;
+                        break;
+                    }
+                }
+                if (neww) {
+                    temp_files.push(nFile);
+                    sFile = nFile['name'].split("/");
+                    let img;
+                    if (sFile[0] == 'image') { }
+                    else if (sFile[0] == 'video') { }
+                    else {
+                        img = `<i class="icon"><i class="icon fa-regular fa-file"></i><i class="fa-regular fa-circle-xmark" onclick="remItem(this)"></i></i>`;
+                    }
+                    $("#doc_list").insert(1, img);
+                }
+            };
+            console.log(temp_files);
+        }
+        function remItem(node) {
+            node.parentElement.remove();
+        }
+    </script>
+</body>
+
+</html>

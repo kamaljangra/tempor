@@ -1,0 +1,118 @@
+footer {
+    position: relative;
+}
+.footer_main {
+    padding: 50px 0 50px 50px;
+}
+.footer_main .about {
+    padding: 0 30px;
+}
+
+.footer_main .brand {
+    padding: 5px 0;
+    display: inline-flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 36px;
+    text-transform: uppercase;
+}
+
+.footer_main .brand img {
+    width: 100%;
+}
+
+.footer_main .brand_mini_quote {
+    font-size: 14px;
+    letter-spacing: 3.4px;
+    text-transform: uppercase;
+}
+.footer_main nav {
+    margin-top: 30px;
+    width: calc(100% / 3);
+}
+.footer_main nav .nav_title {
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+.footer_main nav a {
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 35px;
+    width: max-content;
+}
+
+.footer_main nav a:hover {
+    letter-spacing: 3px;
+    font-size: 20px;
+    color: var(--purple_800);
+    transform: translate(1px, 1px);
+}
+
+.footer_main nav form {
+    padding-right: 20px;
+}
+.footer_main nav form .field {
+    margin-bottom: 10px;
+}
+
+footer .social_bar {
+    padding: 20px;
+    line-height: 30px;
+}
+.social_links {
+    margin-left: auto;
+}
+.social_links a {
+    margin: 0 20px;
+}
+.social_bar .brand {
+    max-height: 60px;
+    font-size: 24px;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+footer .social_bar nav a:hover {
+    letter-spacing: 3px;
+    font-size: 20px;
+    color: var(--purple_800);
+    transform: translate(1px, 1px);
+}
+
+.copyright {
+    margin: 20px 15px 0;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.links {
+    flex-grow: 1;
+    margin: 0 10%;
+}
+footer form input {
+    width: 100%;
+    border: 2px solid black;
+    outline: none;
+    padding: 9px 20px;
+    border-radius: inherit;
+    background: transparent;
+    border-radius: 10px;
+}
+footer form button {
+    width: 100%;
+    border: 2px solid black;
+    outline: none;
+    padding: 7px 20px;
+    border-radius: inherit;
+    border-radius: 10px;
+    background: black;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+footer form button:hover {
+    color: black;
+    background: transparent;
+}

@@ -1,0 +1,94 @@
+body.loading{
+    height: 100vh;
+    overflow: hidden;
+}
+#loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+}
+#loader.remove {
+    display: none;
+}
+.upper,
+.lower {
+    width: 100%;
+    height: 50%;
+    background: black;
+    position: relative;
+    top: 0;
+    overflow: hidden;
+    transition: all 1s cubic-bezier(1, -0.03, 0.58, 1);
+}
+:where(.upper, .lower) h1 {
+    color: white;
+    position: absolute;
+    font-weight: 700;
+    left: 50%;
+    height: 80px;
+    white-space: nowrap;
+    line-height: 70px;
+    font-size: 12vw;
+    text-transform: uppercase;
+    transition: all 1s;
+}
+#loader .upper h1 {
+    bottom: -100%;
+    transform: translateX(-50%);
+}
+#loader .lower h1 {
+    top: -100%;
+    transform: translateX(-50%);
+}
+#loader.s1 .upper h1 {
+    bottom: 0;
+    transform: translate(-50%, 50%);
+}
+#loader.s1 .lower h1 {
+    top: 0%;
+    transform: translate(-50%, -50%);
+}
+#loader.hide .upper {
+    top: -100%;
+}
+#loader.hide .lower {
+    top: 100%;
+}
+#load_bar {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    width: 0%;
+    height: 5px;
+    transform: translateY(-50%);
+    background: linear-gradient(
+        45deg,
+        #ff5420,
+        #a92256,
+        #23a6d5,
+        #228971,
+        yellow
+    );
+    background-size: 1000%;
+    transition: all 0.1s linear;
+    animation: gradient 5s linear infinite alternate,
+        bar_width 5s linear forwards;
+}
+#loader.s1 #load_bar {
+    width: 0% !important;
+}
+@keyframes gradient {
+    from {
+        background-position: 0%;
+    }
+    to {
+        background-position: 100%;
+        width: 100%;
+    }
+}
+@keyframes bar_width {
+    to {
+        width: 100%;
+    }
+}

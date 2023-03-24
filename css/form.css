@@ -1,0 +1,114 @@
+body {
+    --fade: #ffffff99;
+    background: linear-gradient(135deg, #19c3ac, #0a685b);
+    color: white;
+}
+header {
+    padding: 20px 40px;
+}
+header a {
+    letter-spacing: 1px;
+    padding: 4px 16px 6px;
+    border: 2px solid var(--fade);
+    border-radius: 100px;
+    transition: all 0.4s;
+    font-weight: 600;
+}
+header a:hover {
+    background: var(--fade);
+    color: black;
+}
+form {
+    width: 240px;
+}
+form .heading {
+    margin-bottom: 12px;
+}
+form .sub_heading {
+    margin-bottom: 40px;
+    color: var(--fade);
+}
+form .field {
+    width: 100%;
+    position: relative;
+    margin-bottom: 20px;
+}
+form .field input {
+    border: none;
+    background: none;
+    border-bottom: 2px solid var(--fade);
+    padding: 8px 10px;
+    outline: none;
+    color: white;
+    width: 100%;
+}
+form .field.otp input {
+    margin-inline: 8px;
+    text-align: center;
+}
+form .field.otp input::placeholder {
+    color: var(--fade);
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+form .field label {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    padding: 0 10px;
+    transform: translate(0%, -50%);
+    transition: all 0.4s;
+}
+form .field.error input {
+    border-color: var(--error);
+}
+form .field.error input + label {
+    color: var(--error);
+}
+form .field:focus input + label,
+form .field input:not(:placeholder-shown) + label {
+    font-size: 10px;
+    top: -10%;
+}
+form .field i{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    color: var(--error);
+    display: none;
+}
+form .field.error i{
+    display: unset;
+}
+form button {
+    padding: 4px;
+    color: white;
+    border: 2px solid var(--fade);
+    outline: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.4s;
+    background: none;
+    border-radius: 6px;
+    margin-top: 16px;
+}
+form button:hover {
+    color: black;
+    background: white;
+    transform: translate(2px, 2px);
+}
+footer {
+    padding: 20px;
+}
+footer h3 {
+    letter-spacing: 1px;
+}
+footer h6 {
+    margin: 4px 0 0;
+    font-size: 12px;
+    color: var(--fade);
+}
